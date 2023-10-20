@@ -15,22 +15,35 @@ export const Title = styled.h2`
 export const Image = styled.img`
   width: 100%;
   height: 300px;
-  object-fit: cover;
+  object-fit: contain;
   border-radius: 5px;
 `
 
 export const About = styled.section`
   display: grid;
-  grid-template-columns: auto 1fr;
   gap: 15px;
+  @media (min-width: 768px) {
+    grid-template-columns: auto 1fr;
+  }
 `;
 
 export const Information = styled.article``;
 
 export const VoiceList = styled.section`
   display: grid;
-  grid-template-columns: repeat(5, minmax(0px, 1fr));
   gap: 1.5rem;
+  @media (min-width: 480px) {
+    grid-template-columns: repeat(2, minmax(0px, 1fr));
+  }
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(3, minmax(0px, 1fr));
+  }
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(4, minmax(0px, 1fr));
+  }
+  @media (min-width: 1200px) {
+    grid-template-columns: repeat(5, minmax(0px, 1fr));
+  }
 `;
 
 export const Voice = styled.article`

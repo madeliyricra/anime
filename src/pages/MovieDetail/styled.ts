@@ -11,8 +11,10 @@ export const Container = styled.div`
 
 export const DetailContainer = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr;
   gap: 10px;
+  @media (min-width: 768px) {
+    grid-template-columns: 1fr 1fr;
+  }
 `
 
 export const Information = styled.section`
@@ -39,8 +41,19 @@ export const RecommendationsContainer = styled.section`
 
 export const Recommendations = styled.div`
   display: grid;
-  grid-template-columns: repeat(6, minmax(0px, 1fr));
   gap: 1.5rem;
+  @media (min-width: 480px) {
+    grid-template-columns: repeat(2, minmax(0px, 1fr));
+  }
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(3, minmax(0px, 1fr));
+  }
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(5, minmax(0px, 1fr));
+  }
+  @media (min-width: 1200px) {
+    grid-template-columns: repeat(6, minmax(0px, 1fr));
+  }
 `
 
 export const Title = styled.h2`
