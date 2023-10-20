@@ -39,7 +39,7 @@ const App = () => {
 
   useLayoutEffect(() => {
     getMovie();
-  }, []);
+  }, [params]);
 
   return (
     <Layout title={`${movie?.type ?? ''} ${movie?.title ?? ''}`} backPath={links.home}>
