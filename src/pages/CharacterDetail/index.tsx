@@ -39,38 +39,36 @@ const App = () => {
   }, []);
 
   return (
-    <>
+    <Layout
+      title={character?.name ? `Character ${character?.name} (${character?.name_kanji})`: ''}
+      backPath={`/anime/${params.movieId}`}
+    >
       {loading ? (
         <Loading />
       ) : (
-        <Layout
-          title={`Character ${character?.name} (${character?.name_kanji})`}
-          backPath={`/anime/${params.movieId}`}
-        >
-          <Container>
-            <About>
-              <Image src={character?.images.webp.image_url} />
-              <Information>
-                <Title>About</Title>
-                <p>{character?.about}</p>
-              </Information>
-            </About>
-            <Title>Voice Actors</Title>
-            <VoiceList>
-              {character?.voices.map((voice) => (
-                <Voice key={voice.person.mal_id}>
-                  <VoiceImage src={voice.person.images.jpg.image_url} />
-                  <VoiceInformation>
-                    <p>{voice.person.name}</p>
-                    <span>{voice.language}</span>
-                  </VoiceInformation>
-                </Voice>
-              ))}
-            </VoiceList>
-          </Container>
-        </Layout>
+        <Container>
+          <About>
+            <Image src={character?.images.webp.image_url} />
+            <Information>
+              <Title>About</Title>
+              <p>{character?.about}</p>
+            </Information>
+          </About>
+          <Title>Voice Actors</Title>
+          <VoiceList>
+            {character?.voices.map((voice) => (
+              <Voice key={voice.person.mal_id}>
+                <VoiceImage src={voice.person.images.jpg.image_url} />
+                <VoiceInformation>
+                  <p>{voice.person.name}</p>
+                  <span>{voice.language}</span>
+                </VoiceInformation>
+              </Voice>
+            ))}
+          </VoiceList>
+        </Container>
       )}
-    </>
+    </Layout>
   );
 };
 

@@ -4,7 +4,7 @@ import IconfigState from '../types/anime'
 const initialState: IconfigState = {
   loading: false,
   movies: [],
-  search: '',
+  search: 'one piece',
 }
 
 const configSlice = createSlice({

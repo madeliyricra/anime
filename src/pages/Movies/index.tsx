@@ -21,7 +21,7 @@ const App = () => {
 
 
   return (
-    <Layout title="Peliculas de Anime">
+    <Layout title="Anime movies">
       <Container>
         {loading ? (
           <Loading />
@@ -29,7 +29,8 @@ const App = () => {
           <>
             <Search
               type="search"
-              placeholder="Buscar película..."
+              placeholder="Search movie..."
+              value={search}
               onChange={(e) => actionSetSearch(e.target.value)}
             />
             <MoviesContainer>

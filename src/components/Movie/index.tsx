@@ -31,7 +31,7 @@ const App = ({
         <Year>{returnYear(aired.from)}</Year>
       </Header>
       <Figure>
-        <Image src={images.webp.image_url} alt={title} />
+        <Image src={images.webp.large_image_url} alt={title} />
       </Figure>
     </Container>
   );
