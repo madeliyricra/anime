@@ -1,4 +1,5 @@
 export interface ILayout {
-  title?: string;
+  title: string;
   children: React.ReactNode;
+  backPath?: string;
 }

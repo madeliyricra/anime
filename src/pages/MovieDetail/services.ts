@@ -1,20 +1,23 @@
-import { getMovieById } from "./api";
+import { getCharactersByIdMovie, getMovieById } from "./api";
 
 export const getMovieDetail = async ({
-  mail_id,
+  movieId,
   setCharacters,
+  setMovie,
   setLoading
 }: {
-  mail_id: string;
+  movieId: string;
   setCharacters: Function;
+  setMovie: Function;
   setLoading: Function;
 }) => {
   try {
     setLoading(true);
-    const response = await getMovieById(mail_id);
+    const response = await getMovieById(movieId);
+    const responseCharacters = await getCharactersByIdMovie(movieId);
 
-    setCharacters(response?.data || []);
-    console.log(response?.data)
+    setMovie(response?.data || []);
+    setCharacters(responseCharacters.data);
     
   } catch (error: any) {
     console.error("Error: ", error);
@@ -23,3 +26,4 @@ export const getMovieDetail = async ({
     setLoading(false);
   }
 };
+

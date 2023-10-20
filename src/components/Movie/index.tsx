@@ -1,15 +1,28 @@
-import { returnYear } from "constants/functions"
-import { IMovie } from "interfaces"
-import { Container, Duraction, Figure, Header, Image, Title, Year } from "./styled"
+import { returnYear } from "constants/functions";
+import { IMovie } from "interfaces";
+import { useNavigate } from "react-router-dom";
+import {
+  Container,
+  Duraction,
+  Figure,
+  Header,
+  Image,
+  Title,
+  Year,
+} from "./styled";
 
 const App = ({
   movie,
-  handleDetail
 }: {
-  movie: IMovie,
-  handleDetail: (mal_id: number) => void
+  movie: IMovie;
 }) => {
-  const {title, mal_id, duration, images, aired} = movie
+  const navigate = useNavigate();
+
+  const { title, mal_id, duration, images, aired } = movie;
+
+  const handleDetail = (mal_id: number) => {
+    navigate(`/anime/${mal_id}`);
+  };
   return (
     <Container onClick={() => handleDetail(mal_id)}>
       <Duraction>{duration}</Duraction>
@@ -21,7 +34,7 @@ const App = ({
         <Image src={images.webp.image_url} alt={title} />
       </Figure>
     </Container>
-  )
-}
+  );
+};
 
-export default App
+export default App;

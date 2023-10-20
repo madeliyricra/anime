@@ -18,14 +18,33 @@ export const Body = styled.section`
 `
 
 export const Title = styled.section`
-  padding: 10px 2% 10px;
+  position: relative;
+  padding: 10px;
   max-width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
   h1{
     font-size: 30px;
     font-weight: 600;
     text-align: center;
     line-height: 1.4;
     margin: 0;
+  }
+`
+
+export const BackButton = styled.button`
+  position: absolute;
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  background: transparent;
+  border-radius: 5px;
+  cursor: pointer;
+  outline: none;
+  border: 1px solid ${colors.neutral02};
+  &:hover{
+    background: #1d1b234f;
   }
 `
 

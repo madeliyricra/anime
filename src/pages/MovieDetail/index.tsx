@@ -1,19 +1,39 @@
+import { Character, Layout, Loading, Movie } from "components";
+import { links } from "constants/links";
+import { useAppSelector } from "hooks";
+import { ICharacterDetail, IMovie } from "interfaces";
 import { useLayoutEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getMovieDetail } from "./services";
+import {
+  CharacterContainer,
+  CharacterList,
+  Container,
+  DetailContainer,
+  Information,
+  Recommendations,
+  RecommendationsContainer,
+  Title,
+} from "./styled";
 
 const App = () => {
   const params = useParams();
-  const [characters, setCharacters] = useState<any[]>([]);
+  const [characters, setCharacters] = useState<ICharacterDetail[]>([]);
+  const [movie, setMovie] = useState<IMovie>();
   const [loading, setLoading] = useState(false);
+  const { movies } = useAppSelector((state) => state.anime);
 
   const getMovie = async () => {
     const mail_id = params.movieId;
-    console.log(params);
 
     if (!mail_id) return;
 
-    await getMovieDetail({ mail_id, setCharacters, setLoading });
+    await getMovieDetail({
+      movieId: mail_id,
+      setCharacters,
+      setMovie,
+      setLoading,
+    });
   };
 
   useLayoutEffect(() => {
@@ -21,24 +41,60 @@ const App = () => {
   }, []);
 
   return (
-    <div>
+    <Layout title={`${movie?.type ?? ''} ${movie?.title ?? ''}`} backPath={links.home}>
       {loading ? (
-        <p>Loading...</p>
+        <Loading />
       ) : (
-        <div>
-          <h1>Movie Detail</h1>
-          <p>Movie ID: {params.movieId}</p>
-          {characters.map((character, index) => {
-            return (
-              <div key={index}>
-                <p>Character ID: {character?.character?.mal_id}</p>
-                <p>Character Name: {character?.character?.name}</p>
-              </div>
-            );
-          })}
-        </div>
+        <Container>
+          <DetailContainer>
+            <div>
+              <Information>
+                <img src={movie?.images.webp.image_url} />
+                <div>
+                  <p><strong>Duration:</strong> {movie?.duration}</p>
+                  <p><strong>Type:</strong> {movie?.type}</p>
+                  <p>
+                  <strong>Genres:</strong>
+                    {movie?.genres?.map((gender) => (
+                      <span>{gender.name} | </span>
+                    ))}
+                  </p>
+                </div>
+              </Information>
+              <Title>Synopsis</Title>
+              <p>{movie?.synopsis}</p>
+            </div>
+            <CharacterContainer>
+              <Title>Characters</Title>
+              <CharacterList>
+                {characters.map((character) => {
+                  return (
+                    <Character
+                      key={character.character.mal_id}
+                      characterDetail={character}
+                      movieId={Number(params.movieId)}
+                    />
+                  );
+                })}
+              </CharacterList>
+            </CharacterContainer>
+          </DetailContainer>
+          <RecommendationsContainer>
+            <Title>Recommendations</Title>
+            <Recommendations>
+              {movies?.length > 0 ? (
+                movies?.slice(1, 12)?.map((movie) => {
+                  if (movie.mal_id === Number(params.movieId)) return null;
+                  return <Movie key={movie.mal_id} movie={movie} />;
+                })
+              ) : (
+                <p>No se encontro</p>
+              )}
+            </Recommendations>
+          </RecommendationsContainer>
+        </Container>
       )}
-    </div>
+    </Layout>
   );
 };
 
