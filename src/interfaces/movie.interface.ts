@@ -1,4 +1,20 @@
 
+interface IImage{
+  webp: {
+    image_url: string,
+    large_image_url: string,
+    small_image_url: string,
+  }
+}
+
+interface Igender{
+  name: string
+}
+
+interface IAired{
+  from: string
+}
+
 interface IMovie {
   mal_id: number
   title: string
@@ -6,12 +22,9 @@ interface IMovie {
   duration: string
   score: number
   synopsis: string
-  image: string
+  images: IImage
   genres: Igender[]
-}
-
-interface Igender{
-  name: string
+  aired: IAired
 }
 
 export default IMovie;
