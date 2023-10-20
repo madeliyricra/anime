@@ -1,6 +1,6 @@
 # Anime with React
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Application to search for animes and show their details
 
 ## Requirements
 
@@ -18,6 +18,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Manual start
 ```javascript
+npm install
 npm start
 ```
 
