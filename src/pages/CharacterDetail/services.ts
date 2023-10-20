@@ -13,6 +13,11 @@ export const getCharacterDetail = async ({
     setLoading(true);
     const response = await getCharacterById(characterId);
 
+    if(response?.message){
+      alert(response?.message);
+      return;
+    }
+
     setCharacter(response.data);
     
   } catch (error: any) {

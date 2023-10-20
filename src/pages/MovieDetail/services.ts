@@ -16,6 +16,16 @@ export const getMovieDetail = async ({
     const response = await getMovieById(movieId);
     const responseCharacters = await getCharactersByIdMovie(movieId);
 
+    if(response?.message){
+      alert(response?.message);
+      return;
+    }
+
+    if(response?.responseCharacters){
+      alert(response?.responseCharacters);
+      return;
+    }
+
     setMovie(response?.data || []);
     setCharacters(responseCharacters.data);
     

@@ -9,6 +9,11 @@ export const handleMovies = async ({
   try {
     actionSetLoading(true);
     const response = await getMovies(search);
+
+    if(response?.message){
+      alert(response?.message);
+      return;
+    }
     
     actionSetMovies(response?.data || []);
     
