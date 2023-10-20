@@ -1,9 +1,10 @@
 import { Character, Layout, Loading, Movie } from "components";
 import { links } from "constants/links";
 import { useAppSelector } from "hooks";
-import { ICharacterDetail, IMovie } from "interfaces";
+import { IMovie } from "interfaces";
 import { useLayoutEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { ICharacterDetail } from "./props";
 import { getMovieDetail } from "./services";
 import {
   CharacterContainer,
@@ -41,60 +42,69 @@ const App = () => {
   }, []);
 
   return (
-    <Layout title={`${movie?.type ?? ''} ${movie?.title ?? ''}`} backPath={links.home}>
+    <>
       {loading ? (
         <Loading />
       ) : (
-        <Container>
-          <DetailContainer>
-            <div>
-              <Information>
-                <img src={movie?.images.webp.image_url} />
-                <div>
-                  <p><strong>Duration:</strong> {movie?.duration}</p>
-                  <p><strong>Type:</strong> {movie?.type}</p>
-                  <p>
-                  <strong>Genres:</strong>
-                    {movie?.genres?.map((gender) => (
-                      <span>{gender.name} | </span>
-                    ))}
-                  </p>
-                </div>
-              </Information>
-              <Title>Synopsis</Title>
-              <p>{movie?.synopsis}</p>
-            </div>
-            <CharacterContainer>
-              <Title>Characters</Title>
-              <CharacterList>
-                {characters.map((character) => {
-                  return (
-                    <Character
-                      key={character.character.mal_id}
-                      characterDetail={character}
-                      movieId={Number(params.movieId)}
-                    />
-                  );
-                })}
-              </CharacterList>
-            </CharacterContainer>
-          </DetailContainer>
-          <RecommendationsContainer>
-            <Title>Recommendations</Title>
-            <Recommendations>
-              {movies?.length > 0 ? (
-                movies?.slice(1, 12)?.map((movie) => {
-                  if (movie.mal_id === Number(params.movieId)) return null;
-                  return <Movie key={movie.mal_id} movie={movie} />;
-                })
-              ) : (
-                <p>No se encontro</p>
-              )}
-            </Recommendations>
-          </RecommendationsContainer>
-        </Container>
+        <Layout
+          title={`${movie?.type ?? ""} ${movie?.title ?? ""}`}
+          backPath={links.home}
+        >
+          <Container>
+            <DetailContainer>
+              <div>
+                <Information>
+                  <img src={movie?.images.webp.image_url} />
+                  <div>
+                    <p>
+                      <strong>Duration:</strong> {movie?.duration}
+                    </p>
+                    <p>
+                      <strong>Type:</strong> {movie?.type}
+                    </p>
+                    <p>
+                      <strong>Genres:</strong>
+                      {movie?.genres?.map((gender, key) => (
+                        <span key={key}>{gender.name} | </span>
+                      ))}
+                    </p>
+                  </div>
+                </Information>
+                <Title>Synopsis</Title>
+                <p>{movie?.synopsis}</p>
+              </div>
+              <CharacterContainer>
+                <Title>Characters</Title>
+                <CharacterList>
+                  {characters.map((character) => {
+                    return (
+                      <Character
+                        key={character.character.mal_id}
+                        characterDetail={character}
+                        movieId={Number(params.movieId)}
+                      />
+                    );
+                  })}
+                </CharacterList>
+              </CharacterContainer>
+            </DetailContainer>
+            <RecommendationsContainer>
+              <Title>Recommendations</Title>
+              <Recommendations>
+                {movies?.length > 0 ? (
+                  movies?.slice(1, 12)?.map((movie) => {
+                    if (movie.mal_id === Number(params.movieId)) return null;
+                    return <Movie key={movie.mal_id} movie={movie} />;
+                  })
+                ) : (
+                  <p>No se encontro</p>
+                )}
+              </Recommendations>
+            </RecommendationsContainer>
+          </Container>
+        </Layout>
       )}
-    </Layout>
+    </>
   );
 };
 

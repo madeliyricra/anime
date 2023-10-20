@@ -9,7 +9,7 @@ export const handleMovies = async ({
   try {
     actionSetLoading(true);
     const response = await getMovies(search);
-    console.log(response)
+    
     actionSetMovies(response?.data || []);
     
   } catch (error: any) {

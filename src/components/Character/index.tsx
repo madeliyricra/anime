@@ -1,5 +1,6 @@
-import { ICharacterDetail } from "interfaces";
+
 import { useNavigate } from "react-router-dom";
+import { ICharacterDetail } from "./props";
 import { Container, Image, Name, Role } from "./styled";
 
 const App = ({
