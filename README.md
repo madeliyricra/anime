@@ -1,15 +1,36 @@
-# Getting Started with Create React App
+# Anime with React
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## Requirements
 
-In the project directory, you can run:
+- React == 18.2.0 [documentation](https://es.react.dev/)
 
-### `npm start`
+### Rest API
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- Jikan API [documentation](https://jikan.moe/)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Environment Variables
+| Parameter| Description| Example|
+| ---| ---| ---|
+| PORT| port for project execution| 3000|
+| REACT_APP_API| Rest API| https://api.jikan.moe/v4|
+
+## Manual start
+```javascript
+npm start
+```
+
+## Contributors
+
+<table>
+  <tbody>
+    <td>
+      <img src="https://avatars.githubusercontent.com/u/77288944?v=4" width="100px;"/>
+      <br />
+      <label><a href="https://github.com/madeliyricra">Madeliy Ricra</a></label>
+      <br />
+    </td>  
+  </tbody>
+</table>
+
