@@ -5,9 +5,9 @@ const Routes = () => {
   return (
     <BrowserRouter>
       <Switch>
-        <Route path="/" element={<Movies />} />
-        <Route path="/:movieId" element={<MovieDetail />} />
-        <Route path="/:movieId/character/:characterId" element={<MovieDetail />} />
+        <Route path="/anime" element={<Movies />} />
+        <Route path="/anime/:movieId" element={<MovieDetail />} />
+        <Route path="/anime/:movieId/character/:characterId" element={<MovieDetail />} />
       </Switch>
     </BrowserRouter>
   );

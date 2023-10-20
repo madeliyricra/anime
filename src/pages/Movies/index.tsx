@@ -21,7 +21,7 @@ const App = () => {
   }, [searchDebounce]);
 
   const handleDetail = (mal_id: number) => {
-    navigate(`/${mal_id}`);
+    navigate(`/anime/${mal_id}`);
   }
 
   return (
